@@ -6,6 +6,12 @@ services:
     container_name: node-app
     ports:
       - "3001:3000"
+    volumes:
+      - ./src:/app/src
+      - ./package.json:/app/package.json
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./.env.local:/app/.env.local
+      - ./.env.keys:/app/.env.keys
     depends_on:
       - db
 
@@ -18,7 +24,7 @@ services:
       - ./.env
       - ./decrypted_env/.env.local
     ports:
-      - "5432:5432"
+      - "5555:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./db/init:/docker-entrypoint-initdb.d

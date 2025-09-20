@@ -18,10 +18,5 @@
     "skipLibCheck": true,
     "plugins": [{ "transform": "typescript-transform-paths" }]
   },
-  "include": ["src/**/*"],
-  "ts-node": {
-    "transpileOnly": true,
-    "transpiler": "ts-node/transpilers/swc-experimental",
-    "require": ["tsconfig-paths/register"]
-  }
+  "include": ["src/**/*"]
 }
