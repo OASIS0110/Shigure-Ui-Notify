@@ -16,3 +16,12 @@ CREATE TABLE IF NOT EXISTS stream_schedule (
 		stream_time TIMESTAMP NOT NULL,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS youtubers (
+		id BIGSERIAL PRIMARY KEY,
+		channel_id VARCHAR(100) NOT NULL,
+		handle_name VARCHAR(100),
+		channel_name VARCHAR(100) NOT NULL,
+		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		pubsub_expire_at TIMESTAMP
+);
