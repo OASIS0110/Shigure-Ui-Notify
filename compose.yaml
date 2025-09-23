@@ -19,12 +19,12 @@ services:
     build:
       context: .
       dockerfile: docker/postgres/Dockerfile
-    container_name: postgres-db
+    container_name: $CONTAINER_NAME
     env_file:
       - ./.env
       - ./decrypted_env/.env.local
     ports:
-      - "5555:5432"
+      - "$POSTGRES_PORT:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./db/init:/docker-entrypoint-initdb.d

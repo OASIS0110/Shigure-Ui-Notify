@@ -1,4 +1,28 @@
-CREATE TABLE IF NOT EXISTS notification_user (
+CREATE TABLE IF NOT EXISTS youtubers (
+		id BIGSERIAL PRIMARY KEY,
+		channel_id VARCHAR(100) NOT NULL,
+		handle_name VARCHAR(100),
+		channel_name VARCHAR(100) NOT NULL,
+		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		pubsub_expire_at TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS stream_schedules (
+		id BIGSERIAL PRIMARY KEY,
+		video_id VARCHAR(100) NOT NULL,
+		youtuber_id BIGINT NOT NULL,
+		stream_title VARCHAR(255) NOT NULL,
+		stream_description TEXT,
+		stream_start_at TIMESTAMP NOT NULL,
+		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+		stream_started BOOLEAN DEFAULT FALSE,
+		FOREIGN KEY (youtuber_id) REFERENCES youtubers(id)
+			ON DELETE CASCADE
+			ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS notification_users (
     id BIGSERIAL PRIMARY KEY,
 		user_id VARCHAR(18) NOT NULL,
 		user_name VARCHAR(100) NOT NULL,
@@ -9,19 +33,13 @@ CREATE TABLE IF NOT EXISTS notification_user (
 		updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS stream_schedule (
+CREATE TABLE IF NOT EXISTS notification_servers (
 		id BIGSERIAL PRIMARY KEY,
-		video_id VARCHAR(100) NOT NULL,
-		stream_title VARCHAR(255) NOT NULL,
-		stream_time TIMESTAMP NOT NULL,
-		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS youtubers (
-		id BIGSERIAL PRIMARY KEY,
-		channel_id VARCHAR(100) NOT NULL,
-		handle_name VARCHAR(100),
-		channel_name VARCHAR(100) NOT NULL,
+		guild_id VARCHAR(18) NOT NULL,
+		channel_id VARCHAR(18) NOT NULL,
+		members_only_video BOOLEAN DEFAULT TRUE,
+		collaboration BOOLEAN DEFAULT TRUE,
+		disable BOOLEAN DEFAULT FALSE,
 		created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-		pubsub_expire_at TIMESTAMP
+		updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
