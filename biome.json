@@ -34,7 +34,23 @@
 		"enabled": true,
 		"actions": {
 			"source": {
-				"organizeImports": "on"
+				"organizeImports": {
+					"level": "on",
+					"options": {
+            "groups": [
+              // ===== npm packages =====
+              { "type": false, "source": ":PACKAGE:" },
+              ":BLANK_LINE:",
+
+              // ===== user modules =====
+              { "type": false, "source": ":PATH:" },
+              ":BLANK_LINE:",
+
+              // ===== import types =====
+              { "type": true }
+            ]
+          }
+				}
 			}
 		}
 	}
