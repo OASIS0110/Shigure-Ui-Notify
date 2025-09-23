@@ -9,7 +9,10 @@
     "dev": "dotenvx run -f .env.local -- nodemon -L --exec tsx src/index.ts",
     "build": "tsc -p .",
     "prepare": "ts-patch install",
-    "test": "npx tsx --loader ts-node/esm -T --rs src/test/win32test.ts"
+    "test": "npx tsx --loader ts-node/esm -T --rs src/test/win32test.ts",
+		"command-reset": "dotenvx run -f .env.local -- tsx scripts/reset_commands.ts",
+		"biome": "biome check",
+		"biome:fix": "biome format"
   },
   "keywords": [],
   "author": "OASIS0110",
