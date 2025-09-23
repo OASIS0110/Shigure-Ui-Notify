@@ -6,9 +6,9 @@
     "baseUrl": "./src",
     "paths": {
       "@modules/*": ["./modules/*"],
-      "@config": ["./config.json"],
       "@types/*": ["./types/*"],
 			"@utils/*": ["./utils/*"],
+			"@db/*": ["./db/*"],
     },
     "resolveJsonModule": true,
     "outDir": "./dist",
